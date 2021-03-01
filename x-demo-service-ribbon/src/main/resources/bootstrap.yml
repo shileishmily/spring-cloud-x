@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: x-demo-service-ribbon
+
+server:
+  port: 8091
+
+spring-demo-service:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+      health:
+        show-details: ALWAYS

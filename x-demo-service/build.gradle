@@ -1,0 +1,6 @@
+dependencies {
+    compile project(":x-demo-service-api")
+
+    compile("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
+    compile("com.github.xiaoymin:knife4j-spring-boot-starter")
+}

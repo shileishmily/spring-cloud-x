@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: spring-cloud-hystrix-dashboard-turbine
+
+server:
+  port: 8071
+
+turbine:
+  app-config: x-demo-service-feign,x-demo-service-ribbon
+  aggregator:
+    cluster-config: default
+  cluster-name-expression: "'default'"
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: ALWAYS

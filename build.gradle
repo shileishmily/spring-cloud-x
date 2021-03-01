@@ -1,0 +1,69 @@
+buildscript {
+    ext {
+        springBootVersion = '2.0.1.RELEASE'
+        springBootManagementVersion = '1.0.8.RELEASE'
+        springCloudVersion = 'Finchley.RC1'
+    }
+    repositories {
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        mavenCentral()
+        maven { url 'https://repo.spring.io/snapshot' }
+        maven { url 'https://repo.spring.io/milestone' }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("io.spring.gradle:dependency-management-plugin:${springBootManagementVersion}")
+    }
+}
+
+version = '0.0.1-SNAPSHOT'
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'application'
+    apply plugin: 'idea'
+    apply plugin: 'eclipse'
+    apply plugin: 'war'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+    jar {
+        enabled = true
+    }
+    bootJar {
+        classifier = 'boot'
+    }
+    repositories {
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        mavenCentral()
+        maven { url 'https://repo.spring.io/snapshot' }
+        maven { url 'https://repo.spring.io/milestone' }
+    }
+    dependencies {
+        compile(
+                'org.springframework.boot:spring-boot-starter-web',
+                'org.springframework.boot:spring-boot-starter-tomcat',
+                'org.springframework.boot:spring-boot-starter-actuator',
+                'org.springframework.cloud:spring-cloud-starter',
+                'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client',
+                'com.google.guava:guava:23.0',
+                "org.projectlombok:lombok",
+                "org.springframework.boot:spring-boot-configuration-processor"
+        )
+
+        testCompile(
+                "org.springframework.boot:spring-boot-starter-test",
+                "org.springframework:spring-test",
+                "junit:junit:4.12",
+                "org.projectlombok:lombok"
+        )
+    }
+
+    dependencyManagement {
+        imports { mavenBom("org.springframework.boot:spring-boot-dependencies:${springBootVersion}") }
+        imports { mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}" }
+        imports { mavenBom "com.github.xiaoymin:knife4j-dependencies:2.0.5" }
+    }
+
+}

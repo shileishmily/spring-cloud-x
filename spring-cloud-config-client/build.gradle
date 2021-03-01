@@ -1,0 +1,5 @@
+dependencies {
+    compile("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
+    compile("org.springframework.cloud:spring-cloud-starter-bus-amqp")
+    compile("org.springframework.cloud:spring-cloud-config-client")
+}
