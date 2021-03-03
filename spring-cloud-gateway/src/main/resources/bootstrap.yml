@@ -15,3 +15,7 @@ management:
     web:
       exposure:
         include: '*'
+
+zuul:
+  routes:
+    x-demo-dubbo-provider: /dubbo/**

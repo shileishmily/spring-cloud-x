@@ -1,0 +1,19 @@
+server:
+  port: 6060
+
+dubbo:
+  application:
+    name: x-demo-dubbo-provider
+  registry:
+    address: zookeeper://localhost:2181
+    protocol: zookeeper
+  protocol:
+    name: dubbo
+    port: 20880
+  scan:
+    base-packages: com.x.dubbo.provider.service
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    enabled: false

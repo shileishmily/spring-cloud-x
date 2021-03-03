@@ -13,4 +13,6 @@ include 'spring-cloud-hystrix-dashboard'
 include 'spring-cloud-hystrix-dashboard-turbine'
 include 'spring-cloud-stream'
 include 'x-demo-service-api'
+include 'x-demo-dubbo-provider'
+include 'x-demo-dubbo-consumer'
 

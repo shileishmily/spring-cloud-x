@@ -1,4 +1,16 @@
 dependencies {
+    compile project(":x-demo-service-api")
+
     compile("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
     compile("org.springframework.cloud:spring-cloud-starter-netflix-zuul")
+
+    compile(group: 'org.apache.dubbo', name: 'dubbo', version: '2.7.8') {
+        exclude(module: 'slf4j-log4j12')
+        exclude(module: 'slf4j-api')
+    }
+
+    compile(group: 'org.apache.dubbo', name: 'dubbo-dependencies-zookeeper', version: '2.7.8') {
+        exclude(module: 'slf4j-log4j12')
+        exclude(module: 'slf4j-api')
+    }
 }

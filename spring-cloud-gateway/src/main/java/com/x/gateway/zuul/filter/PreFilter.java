@@ -3,8 +3,7 @@ package com.x.gateway.zuul.filter;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -19,9 +18,8 @@ import static org.springframework.cloud.netflix.zuul.filters.support.FilterConst
  * @author Leo
  */
 @Component
+@Slf4j
 public class PreFilter extends ZuulFilter {
-
-    private static Logger log = LoggerFactory.getLogger(PreFilter.class);
 
     /**
      * 过滤器的类型，它决定过滤器在请求的哪个生命周期中执行。这里定义为 pre，代表会在请求被路由之前执行
