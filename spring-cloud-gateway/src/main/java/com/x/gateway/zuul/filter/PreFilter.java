@@ -69,13 +69,13 @@ public class PreFilter extends ZuulFilter {
 
         log.info("send {} request to {}", request.getMethod(), request.getRequestURL().toString());
 
-        String token = request.getParameter("token");
+        /*String token = request.getParameter("token");
         if (StringUtils.isEmpty(token)) {
             log.warn("token is empty");
             requestContext.setSendZuulResponse(false);
             requestContext.setResponseStatusCode(HttpStatus.UNAUTHORIZED.value());
             return null;
-        }
+        }*/
         log.info("token is ok");
         return null;
     }

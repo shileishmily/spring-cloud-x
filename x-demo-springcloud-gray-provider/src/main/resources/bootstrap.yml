@@ -1,33 +1,22 @@
 spring:
   application:
-    name: spring-cloud-gateway
+    name: x-demo-springcloud-gray-provider
 
 server:
-  port: 9001
+  port: 18000
 
 eureka:
   client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka/
+    serviceUrl:
+      defaultZone: http://172.16.43.41:8761/eureka/
   instance:
     prefer-ip-address: true
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: '*'
-
-zuul:
-  routes:
-    x-demo-dubbo-provider: /dubbo/**
-
 app:
-  id: spring-cloud-gateway
+  id: gray-provider
 
 apollo:
-  meta: http://localhost:8080
+  meta: http://172.16.43.41:8080
   cacheDir: /opt/data/apollo‐config
   bootstrap:
     enabled: true

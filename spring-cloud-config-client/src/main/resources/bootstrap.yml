@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: spring-cloud-config-client
+
+server:
+  port: 18888
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/,http://localhost:8762/eureka/,http://localhost:8763/eureka/
+
+app:
+  id: 123456  # 与apollo的admin管理界面添加的 appId 一致
+
+apollo:
+  meta: http://localhost:8080 # meta的url
+  cacheDir: /opt/data/apollo‐config
+  bootstrap:
+    enabled: true
+    namespaces: application,funds.pay_service # 从 namespace 中获取配置, 多个以逗号隔开, namespace的配置非properties格式的需要加后缀名
+    eagerLoad:
+      enabled: true

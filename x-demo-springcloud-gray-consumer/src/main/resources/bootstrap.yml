@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: x-demo-springcloud-gray-consumer
+
+server:
+  port: 19000
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://172.16.43.41:8761/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+app:
+  id: gray-consumer
+
+apollo:
+  meta: http://172.16.43.41:8080
+  cacheDir: /opt/data/apollo‐config
+  bootstrap:
+    enabled: true
+    namespaces: application,funds.pay_service
+    eagerLoad:
+      enabled: true
+
+logging:
+  level:
+    root: debug

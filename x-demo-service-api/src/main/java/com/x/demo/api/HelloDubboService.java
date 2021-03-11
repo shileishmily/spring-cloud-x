@@ -4,5 +4,4 @@ public interface HelloDubboService {
     void sayHello();
 
     String sayHi(String name);
-
 }

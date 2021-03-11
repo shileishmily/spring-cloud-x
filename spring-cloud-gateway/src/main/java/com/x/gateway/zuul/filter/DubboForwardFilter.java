@@ -52,7 +52,7 @@ public class DubboForwardFilter extends ZuulFilter {
 
         log.info("send {} request to {}", request.getMethod(), request.getRequestURL().toString());
 
-        if ("POST".equals(request.getMethod())) {
+        /*if ("POST".equals(request.getMethod())) {
             LinkedHashMap param = null;
             try (InputStream inputStream = request.getInputStream()) {
                 String body = StreamUtils.copyToString(inputStream, Charset.forName("UTF-8"));
@@ -76,7 +76,7 @@ public class DubboForwardFilter extends ZuulFilter {
             } catch (IOException e) {
                 log.error("dubbo泛化调动异常", e);
             }
-        }
+        }*/
 
         return null;
     }
