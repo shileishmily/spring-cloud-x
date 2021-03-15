@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 public class ApolloConfig {
 	
 	@Bean
-    public ConfigChangeListen javaConfigSample(){
-        return new ConfigChangeListen();
+    public ConfigChangeListener configChangeListener(){
+        return new ConfigChangeListener();
     }
 }

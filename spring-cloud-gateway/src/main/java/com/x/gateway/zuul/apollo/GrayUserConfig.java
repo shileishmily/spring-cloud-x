@@ -11,6 +11,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
+ * 灰度用户列表，版本配置，从apollo配置中心加载
  * @author Leo
  */
 @Data
@@ -18,8 +19,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @ConfigurationProperties(prefix = "zuul.gray")
-//@EnableConfigurationProperties(GrayUserConfigProp.class)
-public class GrayUserConfigProp {
+public class GrayUserConfig {
 	
 	@Builder.Default
 	private List<String> userIdList = Collections.emptyList();

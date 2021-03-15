@@ -13,19 +13,19 @@ import org.springframework.context.annotation.Configuration;
 public class GrayApolloConfig {
 
     @Bean
-    public GrayConfigChangeListen javaConfigSample() {
-        return new GrayConfigChangeListen();
+    public GrayConfigChangeListener javaConfigSample() {
+        return new GrayConfigChangeListener();
     }
 
     @Bean
     @RefreshScope
-    public GrayUserConfigProp grayUserConfigProp() {
-        return new GrayUserConfigProp();
+    public GrayUserConfig grayUserConfig() {
+        return new GrayUserConfig();
     }
 
     @Bean
     @RefreshScope
-    public UrlMapConfigProp urlMapConfigProp() {
-        return new UrlMapConfigProp();
+    public UrlMapConfig urlMapConfig() {
+        return new UrlMapConfig();
     }
 }

@@ -11,6 +11,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 
+/**
+ * @author Leo
+ */
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -36,9 +39,9 @@ public class UserController {
         private static final long serialVersionUID = 1L;
 
         {
-            put(111L, new User(111L, getIp(), "111-pwd"));
-            put(222L, new User(222L, getIp(), "222-pwd"));
-            put(333L, new User(333L, getIp(), "333-pwd"));
+            put(111L, new User(111L, "aaa", getIp()));
+            put(666L, new User(666L, "bbb", getIp()));
+            put(888L, new User(888L, "ccc", getIp()));
         }
     };
 

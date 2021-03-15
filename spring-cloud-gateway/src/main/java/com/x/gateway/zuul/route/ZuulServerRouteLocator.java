@@ -1,6 +1,6 @@
 package com.x.gateway.zuul.route;
 
-import com.x.gateway.zuul.apollo.UrlMapConfigProp;
+import com.x.gateway.zuul.apollo.UrlMapConfig;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.netflix.zuul.filters.RefreshableRouteLocator;
@@ -19,7 +19,7 @@ import java.util.Set;
  */
 public class ZuulServerRouteLocator extends SimpleRouteLocator implements RefreshableRouteLocator {
     @Autowired
-    private UrlMapConfigProp urlMapConfigProp;
+    private UrlMapConfig urlMapConfig;
 
     public ZuulServerRouteLocator(String servletPath, ZuulProperties properties) {
         super(servletPath, properties);
@@ -30,7 +30,6 @@ public class ZuulServerRouteLocator extends SimpleRouteLocator implements Refres
         doRefresh();
     }
 
-    //覆盖这个方法，从重实现它
     @Override
     protected Map<String, ZuulRoute> locateRoutes() {
 
@@ -39,7 +38,7 @@ public class ZuulServerRouteLocator extends SimpleRouteLocator implements Refres
         //把父类中的映射继承下来，它主要是从配置文件中取的映射。
         routesMap.putAll(super.locateRoutes());
         //这里的路由信息来自于配置文件
-        Set<Entry<String, String>> entrySet = urlMapConfigProp.getMap().entrySet();
+        Set<Entry<String, String>> entrySet = urlMapConfig.getMap().entrySet();
         for (Entry<String, String> entry : entrySet) {
             String serverId = entry.getKey();
             String path = entry.getValue().toLowerCase();

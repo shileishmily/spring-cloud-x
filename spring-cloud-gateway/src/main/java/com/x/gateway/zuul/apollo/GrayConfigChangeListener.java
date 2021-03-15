@@ -15,11 +15,10 @@ import org.springframework.cloud.context.scope.refresh.RefreshScope;
 
 /**
  * 使用@ApolloConfig自动注入Config对象
- * 使用@ApolloConfigChangeListener自动注入ConfigChangeListener对象 当监听到属性值发生变化后使用Config
- * API修改属性值
+ * 使用@ApolloConfigChangeListener自动注入ConfigChangeListener对象 当监听到属性值发生变化后使用Config API修改属性值
  * @author Leo
  */
-public class GrayConfigChangeListen {
+public class GrayConfigChangeListener {
 
     @Autowired
     private RefreshScope refreshScope;
@@ -30,7 +29,7 @@ public class GrayConfigChangeListen {
     @ApolloConfig
     private Config config;
 
-    private static final Logger logger = LoggerFactory.getLogger(GrayConfigChangeListen.class);
+    private static final Logger logger = LoggerFactory.getLogger(GrayConfigChangeListener.class);
 
     @ApolloConfigChangeListener("application")
     private void routeChange(ConfigChangeEvent changeEvent) {
@@ -48,12 +47,12 @@ public class GrayConfigChangeListen {
 
     }
 
-    @ApolloConfigChangeListener("platform.grayuser")
+    @ApolloConfigChangeListener("application")
     private void gray(ConfigChangeEvent changeEvent) {
         changeEvent.changedKeys().forEach(key -> {
             ConfigChange change = changeEvent.getChange(key);
             logger.info("=========>灰度用户已更新 - key: {}, oldValue: {}, newValue: {}, changeType: {}", change.getPropertyName(), change.getOldValue(), change.getNewValue(), change.getChangeType());
-            refreshScope.refresh("grayUserConfigProp");
+            refreshScope.refresh("grayUserConfig");
         });
 
     }

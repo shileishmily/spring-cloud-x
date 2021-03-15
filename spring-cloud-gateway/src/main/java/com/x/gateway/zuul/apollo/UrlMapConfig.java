@@ -5,11 +5,11 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
 import java.util.Map;
 
 /**
+ * 动态路由url配置，从apollo配置中心加载
  * @author Leo
  */
 @Data
@@ -17,7 +17,6 @@ import java.util.Map;
 @NoArgsConstructor
 @AllArgsConstructor
 @ConfigurationProperties(prefix = "url")
-//@EnableConfigurationProperties(UrlMapConfigProp.class)
-public class UrlMapConfigProp {
+public class UrlMapConfig {
     private Map<String, String> map;
 }

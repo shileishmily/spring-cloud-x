@@ -13,6 +13,9 @@ import java.util.Map;
 
 import static org.springframework.cloud.netflix.ribbon.SpringClientFactory.NAMESPACE;
 
+/**
+ * @author Leo
+ */
 public class DefaultPropertiesFactory extends PropertiesFactory {
 
 	@Autowired

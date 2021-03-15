@@ -2,6 +2,7 @@ package com.x.gray.core;
 
 import com.netflix.hystrix.strategy.concurrency.HystrixRequestContext;
 import com.netflix.hystrix.strategy.concurrency.HystrixRequestVariableDefault;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
@@ -14,15 +15,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * @author Leo
  */
+@Slf4j
 public class CoreHeaderInterceptor extends HandlerInterceptorAdapter {
-    private static final Logger logger = LoggerFactory.getLogger(CoreHeaderInterceptor.class);
-
     public static final String HEADER_VERSION = "version";
 
     public static final HystrixRequestVariableDefault<String> version = new HystrixRequestVariableDefault<>();
 
     public static void initHystrixRequestContext(String headerVer) {
-        logger.debug("headerVer:{}", headerVer);
+        log.debug("headerVer:{}", headerVer);
         if (!HystrixRequestContext.isCurrentThreadInitialized()) {
             HystrixRequestContext.initializeContext();
         }

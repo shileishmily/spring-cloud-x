@@ -4,8 +4,7 @@ import com.google.common.base.Optional;
 import com.netflix.loadbalancer.Server;
 import com.netflix.loadbalancer.ZoneAvoidanceRule;
 import com.netflix.niws.loadbalancer.DiscoveryEnabledServer;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
@@ -13,10 +12,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author Leo
+ */
+@Slf4j
 public class GrayMetadataRule extends ZoneAvoidanceRule {
     public static final String META_DATA_KEY_VERSION = "version";
-
-    private static final Logger logger = LoggerFactory.getLogger(GrayMetadataRule.class);
 
     @Override
     public Server choose(Object key) {
@@ -27,7 +28,7 @@ public class GrayMetadataRule extends ZoneAvoidanceRule {
         }
 
         String hystrixVer = CoreHeaderInterceptor.version.get();
-        logger.info("======>GrayMetadataRule:  hystrixVer{}", hystrixVer);
+        log.info("======>GrayMetadataRule:  hystrixVer{}", hystrixVer);
 
         List<Server> noMetaServerList = new ArrayList<>();
         for (Server server : serverList) {
@@ -51,7 +52,7 @@ public class GrayMetadataRule extends ZoneAvoidanceRule {
         }
 
         if (StringUtils.isEmpty(hystrixVer) && !noMetaServerList.isEmpty()) {
-            logger.info("====> 无请求header...");
+            log.info("====> 无请求header...");
             return originChoose(noMetaServerList, key);
         }
 

@@ -2,7 +2,7 @@ package com.x.gateway.zuul.filter;
 
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
-import com.x.gateway.zuul.apollo.GrayUserConfigProp;
+import com.x.gateway.zuul.apollo.GrayUserConfig;
 import com.x.gray.core.CoreHeaderInterceptor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
@@ -21,7 +21,7 @@ import java.util.List;
 public class GrayFilter extends ZuulFilter {
 
     @Autowired
-    private GrayUserConfigProp grayUserConfigProp;
+    private GrayUserConfig grayUserConfig;
 
     private static final String HEADER_TOKEN = "token";
     private static final Logger logger = LoggerFactory.getLogger(GrayFilter.class);
@@ -47,11 +47,13 @@ public class GrayFilter extends ZuulFilter {
         String token = ctx.getRequest().getHeader(HEADER_TOKEN);
 
         String userId = token;
-        log.debug("======>userId:{}", userId);
+        log.info("GrayFilter 客户端请求头userId: {}", userId);
 
-        List<String> userIdList = grayUserConfigProp.getUserIdList();
-        String version = userIdList.contains(userId) ? grayUserConfigProp.getVersion() : null;
-        logger.debug("=====>userId:{},version:{}", userId, version);
+        List<String> userIdList = grayUserConfig.getUserIdList();
+        log.info("GrayFilter Zuul网关配置的灰度用户列表: {}", userIdList);
+
+        String version = userIdList.contains(userId) ? grayUserConfig.getVersion() : null;
+        logger.info("GrayFilter userId:{}, version:{}", userId, version);
 
         // zuul本身调用微服务
         CoreHeaderInterceptor.initHystrixRequestContext(version);
