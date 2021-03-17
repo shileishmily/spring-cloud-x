@@ -1,0 +1,14 @@
+dependencies {
+    compile project(":spring-cloud-gray-core")
+
+    compile("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
+    compile("org.springframework.cloud:spring-cloud-starter-openfeign")
+
+}
+
+bootJar {
+    enabled = true
+}
+springBoot {
+    mainClassName = "com.x.gray.consumer.GrayConsumerApplication"
+}

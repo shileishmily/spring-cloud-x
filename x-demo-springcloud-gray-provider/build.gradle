@@ -1,0 +1,13 @@
+dependencies {
+    compile project(":spring-cloud-gray-core")
+
+    compile("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
+
+}
+
+bootJar {
+    enabled = true
+}
+springBoot {
+    mainClassName = "com.x.gray.provider.GrayProviderApplication"
+}

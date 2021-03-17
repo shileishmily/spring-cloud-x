@@ -1,0 +1,11 @@
+dependencies {
+    compile project(":x-demo-service-api")
+
+    compile(group: 'org.apache.dubbo', name: 'dubbo-spring-boot-starter', version: '2.7.8') {
+        exclude(module: 'slf4j-log4j12')
+    }
+
+    compile(group: 'org.apache.dubbo', name: 'dubbo-dependencies-zookeeper', version: '2.7.8') {
+        exclude(module: 'slf4j-log4j12')
+    }
+}
