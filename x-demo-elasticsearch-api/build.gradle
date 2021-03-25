@@ -1,0 +1,4 @@
+dependencies {
+    compile("org.elasticsearch:elasticsearch:7.11.2")
+    compile("org.elasticsearch.client:elasticsearch-rest-high-level-client:7.11.2")
+}

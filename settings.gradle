@@ -19,4 +19,5 @@ include 'spring-cloud-gray-core'
 include 'x-demo-springcloud-gray-consumer'
 include 'x-demo-springcloud-gray-provider'
 include 'spring-cloud-alertmanager'
+include 'x-demo-elasticsearch-api'
 
